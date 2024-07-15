@@ -5,6 +5,7 @@ exports.addProduct = async (req, res) => {
   try {
     const { category } = req.body;
 
+   
     const categoryExists = await Category.findById(category);
     if (!categoryExists) {
       return res.status(400).send({ error: 'Category not found' });
@@ -19,8 +20,27 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.getAllProducts = async (req, res) => {
+  const { name, category, minPrice, maxPrice } = req.query;
+  const filter = {};
+
+  if (name) {
+    filter.name = { $regex: name, $options: 'i' }; 
+  }
+
+  if (category) {
+    filter.category = category;
+  }
+
+  if (minPrice) {
+    filter.price = { ...filter.price, $gte: parseFloat(minPrice) };
+  }
+
+  if (maxPrice) {
+    filter.price = { ...filter.price, $lte: parseFloat(maxPrice) };
+  }
+
   try {
-    const products = await Product.find({}).populate('category');
+    const products = await Product.find(filter).populate('category');
     res.send(products);
   } catch (error) {
     res.status(500).send(error);
