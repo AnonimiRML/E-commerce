@@ -6,8 +6,8 @@ const createAdmin = async () => {
   try {
     await mongoose.connect(config.DB_URI);
     const admin = new User({
-      name: 'Ilay Harari',
-      email: 'ilayharari1234@gmail.com',
+      name: 'Admin Admin',
+      email: 'admin@example.com',
       password: '1234567',
       role: 'admin'
     });
