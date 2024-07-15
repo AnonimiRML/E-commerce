@@ -86,9 +86,11 @@ Password: password123
 ```
 
 ### API Endpoints
+
 Auth
 Register
 
+```javascript
 URL: /api/v1/auth/register
 Method: POST
 Headers:
@@ -101,6 +103,8 @@ json
   "email": "user@example.com",
   "password": "password123"
 }
+
+```
 Login
 
 URL: /api/v1/auth/login
