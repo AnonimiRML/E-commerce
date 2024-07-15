@@ -90,7 +90,7 @@ Password: password123
 Auth
 Register
 
-```json
+```javascript
 URL: /api/v1/auth/register
 Method: POST
 Headers:
@@ -107,6 +107,7 @@ json
 ```
 Login
 
+```javascript
 URL: /api/v1/auth/login
 Method: POST
 Headers:
@@ -118,9 +119,13 @@ json
   "email": "user@example.com",
   "password": "password123"
 }
+
+```
 Categories
+
 Create Category
 
+```javascript
 URL: /api/v1/categories
 Method: POST
 Headers:
@@ -133,6 +138,8 @@ json
   "name": "New Category",
   "description": "Description of the new category"
 }
+
+```
 Get All Categories
 
 URL: /api/v1/categories
