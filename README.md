@@ -12,26 +12,22 @@ This is a simple ecommerce API built with Node.js, Express, and MongoDB.
 ### Installation
 
 1. Clone the repository:
-
-    ```sh
+    ```bash
     git clone https://github.com/AnonimiRML/E-commerce.git
     ```
 
 2. Navigate to the project directory:
-
-    ```sh
+    ```bash
     cd E-commerce
     ```
 
 3. Install the dependencies:
-
-    ```sh
+    ```bash
     npm install
     ```
 
 4. Update the `config.js` file in the `config` directory with the following environment variables:
-
-    ```js
+    ```javascript
     module.exports = {
       PORT: process.env.PORT || 5000,
       DB_URI: 'mongodb://localhost:27017/ecommerce',
@@ -40,8 +36,7 @@ This is a simple ecommerce API built with Node.js, Express, and MongoDB.
     ```
 
 5. Start the server:
-
-    ```sh
+    ```bash
     npm start
     ```
 
@@ -51,16 +46,19 @@ E-commerce/
 ├── controllers/
 │ ├── authController.js
 │ ├── categoriesController.js
+│ ├── ordersController.js
 │ └── productsController.js
 ├── middlewares/
 │ └── authMiddleware.js
 ├── models/
 │ ├── categoryModel.js
+│ ├── orderModel.js
 │ ├── productModel.js
 │ └── userModel.js
 ├── routes/
 │ ├── authRoutes.js
 │ ├── categoriesRoutes.js
+│ ├── ordersRoutes.js
 │ └── productsRoutes.js
 ├── config/
 │ ├── config.js
@@ -71,35 +69,33 @@ E-commerce/
 └── server.js
 
 shell
-Copy code
+
 
 ## Usage
 
 ### Creating an Admin User
 
 To create an admin user, run the following script:
-
-```sh
+```bash
 node createAdmin.js
 This will create an admin user with the following credentials:
 
 Email: admin@example.com
 Password: password123
-API Endpoints
+
+```
+
+### API Endpoints
 Auth
 Register
 
 URL: /api/v1/auth/register
 Method: POST
 Headers:
-json
-Copy code
-{
-  "Content-Type": "application/json"
-}
+Content-Type: application/json
 Body:
 json
-Copy code
+
 {
   "name": "User Name",
   "email": "user@example.com",
@@ -110,14 +106,10 @@ Login
 URL: /api/v1/auth/login
 Method: POST
 Headers:
-json
-Copy code
-{
-  "Content-Type": "application/json"
-}
+Content-Type: application/json
 Body:
 json
-Copy code
+
 {
   "email": "user@example.com",
   "password": "password123"
@@ -128,15 +120,11 @@ Create Category
 URL: /api/v1/categories
 Method: POST
 Headers:
-json
-Copy code
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <jwt_token>"
-}
+Content-Type: application/json
+Authorization: Bearer <jwt_token>
 Body:
 json
-Copy code
+
 {
   "name": "New Category",
   "description": "Description of the new category"
@@ -151,15 +139,11 @@ Create Product
 URL: /api/v1/products
 Method: POST
 Headers:
-json
-Copy code
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <jwt_token>"
-}
+Content-Type: application/json
+Authorization: Bearer <jwt_token>
 Body:
 json
-Copy code
+
 {
   "name": "Product Name",
   "description": "Product Description",
@@ -177,5 +161,61 @@ name (optional): Filter products by name
 category (optional): Filter products by category ID
 minPrice (optional): Filter products by minimum price
 maxPrice (optional): Filter products by maximum price
-License
+Orders
+Create Order
+
+URL: /api/v1/orders
+Method: POST
+Headers:
+Content-Type: application/json
+Body:
+json
+
+{
+  "guest": {
+    "name": "Guest User",
+    "email": "guest@example.com",
+    "address": "123 Guest St",
+    "phone": "123-456-7890"
+  },
+  "products": [
+    {
+      "product": "<product_id>",
+      "quantity": 2
+    },
+    {
+      "product": "<product_id>",
+      "quantity": 1
+    }
+  ]
+}
+Get User Orders
+
+URL: /api/v1/orders
+Method: GET
+Headers:
+Authorization: Bearer <jwt_token>
+Get All Orders (Admin)
+
+URL: /api/v1/orders/all
+Method: GET
+Headers:
+Authorization: Bearer <jwt_token>
+Update Order Status (Admin)
+
+URL: /api/v1/orders/status
+Method: PUT
+Headers:
+Content-Type: application/json
+Authorization: Bearer <jwt_token>
+Body:
+json
+
+{
+  "orderId": "<order_id>",
+  "status": "Completed"
+}
+
+
+### License
 This project is licensed under the MIT License.
