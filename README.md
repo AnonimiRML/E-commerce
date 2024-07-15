@@ -90,7 +90,7 @@ Password: password123
 Auth
 Register
 
-```javascript
+```json
 URL: /api/v1/auth/register
 Method: POST
 Headers:
