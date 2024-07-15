@@ -12,22 +12,26 @@ This is a simple ecommerce API built with Node.js, Express, and MongoDB.
 ### Installation
 
 1. Clone the repository:
-    ```bash
+
+    ```sh
     git clone https://github.com/AnonimiRML/E-commerce.git
     ```
 
 2. Navigate to the project directory:
-    ```bash
+
+    ```sh
     cd E-commerce
     ```
 
 3. Install the dependencies:
-    ```bash
+
+    ```sh
     npm install
     ```
 
 4. Update the `config.js` file in the `config` directory with the following environment variables:
-    ```javascript
+
+    ```js
     module.exports = {
       PORT: process.env.PORT || 5000,
       DB_URI: 'mongodb://localhost:27017/ecommerce',
@@ -36,7 +40,8 @@ This is a simple ecommerce API built with Node.js, Express, and MongoDB.
     ```
 
 5. Start the server:
-    ```bash
+
+    ```sh
     npm start
     ```
 
@@ -73,7 +78,8 @@ Copy code
 ### Creating an Admin User
 
 To create an admin user, run the following script:
-```bash
+
+```sh
 node createAdmin.js
 This will create an admin user with the following credentials:
 
@@ -86,7 +92,11 @@ Register
 URL: /api/v1/auth/register
 Method: POST
 Headers:
-Content-Type: application/json
+json
+Copy code
+{
+  "Content-Type": "application/json"
+}
 Body:
 json
 Copy code
@@ -100,7 +110,11 @@ Login
 URL: /api/v1/auth/login
 Method: POST
 Headers:
-Content-Type: application/json
+json
+Copy code
+{
+  "Content-Type": "application/json"
+}
 Body:
 json
 Copy code
@@ -114,8 +128,12 @@ Create Category
 URL: /api/v1/categories
 Method: POST
 Headers:
-Content-Type: application/json
-Authorization: Bearer <jwt_token>
+json
+Copy code
+{
+  "Content-Type": "application/json",
+  "Authorization": "Bearer <jwt_token>"
+}
 Body:
 json
 Copy code
@@ -133,8 +151,12 @@ Create Product
 URL: /api/v1/products
 Method: POST
 Headers:
-Content-Type: application/json
-Authorization: Bearer <jwt_token>
+json
+Copy code
+{
+  "Content-Type": "application/json",
+  "Authorization": "Bearer <jwt_token>"
+}
 Body:
 json
 Copy code
