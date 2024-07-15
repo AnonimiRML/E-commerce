@@ -42,14 +42,18 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-exports.getOrders = async (req, res) => {
+exports.getUserOrders = async (req, res) => {
   try {
-    let orders;
-    if (req.user) {
-      orders = await Order.find({ user: req.user._id }).populate('products.product');
-    } else {
-      return res.status(401).send({ error: 'Please authenticate.' });
-    }
+    const orders = await Order.find({ user: req.user._id }).populate('products.product');
+    res.send(orders);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().populate('products.product');
     res.send(orders);
   } catch (error) {
     res.status(500).send(error);
