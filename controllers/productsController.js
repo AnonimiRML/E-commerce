@@ -1,8 +1,26 @@
 const Product = require('../models/productModel.js');
+const Category = require('../models/categoryModel.js');
+
+exports.addProduct = async (req, res) => {
+  try {
+    const { category } = req.body;
+
+    const categoryExists = await Category.findById(category);
+    if (!categoryExists) {
+      return res.status(400).send({ error: 'Category not found' });
+    }
+
+    const product = new Product(req.body);
+    await product.save();
+    res.status(201).send(product);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find({});
+    const products = await Product.find({}).populate('category');
     res.send(products);
   } catch (error) {
     res.status(500).send(error);
@@ -11,7 +29,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('category');
     if (!product) {
       return res.status(404).send();
     }
@@ -21,19 +39,9 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-exports.addProduct = async (req, res) => {
-  const product = new Product(req.body);
-  try {
-    await product.save();
-    res.status(201).send(product);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-};
-
 exports.updateProduct = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['name', 'description', 'price', 'category', 'stock'];
+  const allowedUpdates = ['name', 'description', 'price', 'category', 'stock', 'image'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
   if (!isValidOperation) {
