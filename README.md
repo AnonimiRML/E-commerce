@@ -86,9 +86,11 @@ Password: password123
 ```
 
 ### API Endpoints
+
 Auth
 Register
 
+```javascript
 URL: /api/v1/auth/register
 Method: POST
 Headers:
@@ -101,8 +103,11 @@ json
   "email": "user@example.com",
   "password": "password123"
 }
+
+```
 Login
 
+```javascript
 URL: /api/v1/auth/login
 Method: POST
 Headers:
@@ -114,9 +119,13 @@ json
   "email": "user@example.com",
   "password": "password123"
 }
+
+```
 Categories
+
 Create Category
 
+```javascript
 URL: /api/v1/categories
 Method: POST
 Headers:
@@ -129,13 +138,21 @@ json
   "name": "New Category",
   "description": "Description of the new category"
 }
+
+```
 Get All Categories
 
+```javascript
 URL: /api/v1/categories
 Method: GET
+
+```
+
 Products
+
 Create Product
 
+```javascript
 URL: /api/v1/products
 Method: POST
 Headers:
@@ -152,8 +169,10 @@ json
   "stock": 100,
   "image": "<base64_encoded_image>"
 }
+```
 Get All Products
 
+```javascript
 URL: /api/v1/products
 Method: GET
 Query Params:
@@ -161,9 +180,14 @@ name (optional): Filter products by name
 category (optional): Filter products by category ID
 minPrice (optional): Filter products by minimum price
 maxPrice (optional): Filter products by maximum price
+
+```
+
 Orders
+
 Create Order
 
+```javascript
 URL: /api/v1/orders
 Method: POST
 Headers:
@@ -189,20 +213,27 @@ json
     }
   ]
 }
+```
 Get User Orders
 
+```javascript
 URL: /api/v1/orders
 Method: GET
 Headers:
 Authorization: Bearer <jwt_token>
+
+```
 Get All Orders (Admin)
 
+```javascript
 URL: /api/v1/orders/all
 Method: GET
 Headers:
 Authorization: Bearer <jwt_token>
+```
 Update Order Status (Admin)
 
+```javascript
 URL: /api/v1/orders/status
 Method: PUT
 Headers:
@@ -215,7 +246,7 @@ json
   "orderId": "<order_id>",
   "status": "Completed"
 }
-
+```
 
 ### License
 This project is licensed under the MIT License.
