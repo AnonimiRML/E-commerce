@@ -4,12 +4,24 @@
   "description": "First Try",
   "main": "app.js",
   "scripts": {
-    "test": "npm start"
+    "test": "npm start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "author": "Ilay Harari",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@eslint/js": "^9.7.0",
+    "eslint": "^9.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.8.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

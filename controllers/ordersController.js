@@ -58,6 +58,7 @@ exports.getAllOrders = async (req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
+};
 
 exports.updateOrderStatus = async (req, res) => {
   const { orderId, status } = req.body;

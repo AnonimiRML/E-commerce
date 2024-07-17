@@ -18,5 +18,5 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/user', usersRoutes);
 app.use('/api/v1/products', productsRoutes);
 app.use('/api/v1/categories', categoriesRoutes);
-/
+
 module.exports = app;
