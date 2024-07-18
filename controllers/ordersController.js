@@ -2,7 +2,9 @@ const Order = require('../models/orderModel.js');
 const Product = require('../models/productModel.js');
 
 exports.createOrder = async (req, res) => {
-  const { products, guest } = req.body;
+  const { products, guest, shippingAddress } = req.body;
+
+  console.log(req.body);
 
   try {
     const orderProducts = await Promise.all(products.map(async item => {
@@ -24,7 +26,8 @@ exports.createOrder = async (req, res) => {
         product: item.product,
         quantity: item.quantity
       })),
-      totalAmount
+      totalAmount,
+      shippingAddress
     };
 
     if (req.user) {
@@ -34,11 +37,12 @@ exports.createOrder = async (req, res) => {
     }
 
     const order = new Order(orderData);
-
     await order.save();
+
     res.status(201).send(order);
   } catch (error) {
     res.status(400).send({ error: error.message });
+    console.log(error.message);
   }
 };
 

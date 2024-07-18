@@ -12,11 +12,15 @@ const authRoutes = require('./routes/authRoutes.js');
 const usersRoutes = require('./routes/usersRoutes.js');
 const productsRoutes = require('./routes/productsRoutes.js');
 const categoriesRoutes = require('./routes/categoriesRoutes.js');
+const ordersRoutes = require('./routes/ordersRoutes.js');
+
 
 // Use routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/user', usersRoutes);
 app.use('/api/v1/products', productsRoutes);
 app.use('/api/v1/categories', categoriesRoutes);
+app.use('/api/v1/orders', ordersRoutes);
+
 
 module.exports = app;
