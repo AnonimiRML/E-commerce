@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm start",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "setup": "node createAdmin.js"
   },
   "author": "Ilay Harari",
   "license": "ISC",

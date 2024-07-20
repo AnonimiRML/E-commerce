@@ -10,4 +10,6 @@ router.get('/all', authMiddleware, adminMiddleware, ordersController.getAllOrder
 
 router.put('/status', authMiddleware, adminMiddleware, ordersController.updateOrderStatus);
 
+router.delete('/:orderId', authMiddleware, adminMiddleware, ordersController.deleteOrder);
+
 module.exports = router;
