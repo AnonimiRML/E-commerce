@@ -1,5 +1,7 @@
 const Order = require('../models/orderModel.js');
 const Product = require('../models/productModel.js');
+const AdminPreference = require('../models/adminPreferenceModel.js');
+const axios = require('axios');
 
 exports.createOrder = async (req, res) => {
   const { products, guest, shippingAddress } = req.body;
@@ -38,6 +40,15 @@ exports.createOrder = async (req, res) => {
 
     const order = new Order(orderData);
     await order.save();
+
+    // Check admin preferences for Zapier hook
+    const preferences = await AdminPreference.findOne();
+    if (preferences && preferences.zapier && preferences.zapier.purchase && preferences.zapier.purchase.enabled) {
+      const zapierUrl = preferences.zapier.purchase.url;
+      if (zapierUrl) {
+        await axios.post(zapierUrl, order);
+      }
+    }
 
     res.status(201).send(order);
   } catch (error) {
